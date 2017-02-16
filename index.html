@@ -1,0 +1,27 @@
+<html>
+<body>
+
+	<h2>Test interazione Core</h2>
+
+	<button type="button" onclick="loadXMLDoc()">Send Request</button>
+
+	<div id="demo"></div>
+
+	<script>
+		function loadXMLDoc() {
+		  var xmlhttp = new XMLHttpRequest();  
+		  xmlhttp.onreadystatechange = function() {
+			  document.getElementById('demo').appendChild(document.createTextNode(this.responseText));
+		  };
+
+		  xmlhttp.ontimeout = function (e) {
+			  alert('Timeout');
+		  };
+		  xmlhttp.timeout = 1000;
+		  xmlhttp.open("POST", "http://localhost:899", true);
+		  xmlhttp.send('<Stato xsi:noNamespaceSchemaLocation="CoreProtocol.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PreviousId="ProblemaHW" />');		
+		}
+	</script>
+
+</body>
+</html>
